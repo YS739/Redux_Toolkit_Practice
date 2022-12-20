@@ -10,7 +10,7 @@ const initialState = {
   error: null,
 };
 
-export const __getTodos = createAsyncThunk(
+export const __getTodo = createAsyncThunk(
   "todo/getTodo",
   async (payload, thunkAPI) => {
     try {
@@ -22,11 +22,23 @@ export const __getTodos = createAsyncThunk(
   }
 );
 
-export const __postTodos = createAsyncThunk(
+export const __postTodo = createAsyncThunk(
   "todo/postTodo",
   async (payload, thunkAPI) => {
     try {
       const data = await axios.post("http://localhost:3001/todo", payload);
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const __deleteTodo = createAsyncThunk(
+  "todo/postTodo",
+  async (payload, thunkAPI) => {
+    try {
+      const data = await axios.delete(`http://localhost:3001/todo/${payload}`);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -39,13 +51,9 @@ const TodoSlice = createSlice({
   name: "TodoS", // 이 모듈의 이름 - configStore에서 사용
   initialState,
   reducers: {
-    // addTodo: (state, action) => {
-    //   state.todo = [...state.todo, action.payload];
+    // deleteTodo: (state, action) => {
+    //   state.todo = state.todo.filter((del) => del.id !== action.payload);
     // },
-
-    deleteTodo: (state, action) => {
-      state.todo = state.todo.filter((del) => del.id !== action.payload);
-    },
 
     switchTodo: (state, action) => {
       state.todo = state.todo.map((todo) => {
@@ -63,31 +71,42 @@ const TodoSlice = createSlice({
   },
   // extraReducers(비동기를 위한 reducer)
   extraReducers: {
-    [__getTodos.pending]: (state) => {
-      state.isLoading = true; // 네트워크 요청이 시작되면 로딩상태를 true로 변경합니다.
+    [__getTodo.pending]: (state) => {
+      state.isLoading = true;
     },
-    [__getTodos.fulfilled]: (state, action) => {
-      state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
-      state.todo = action.payload; // Store에 있는 todos에 서버에서 가져온 todos를 넣습니다.
+    [__getTodo.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.todo = action.payload;
     },
-    [__getTodos.rejected]: (state, action) => {
-      state.isLoading = false; // 에러가 발생했지만, 네트워크 요청이 끝났으니, false로 변경합니다.
-      state.error = action.payload; // catch 된 error 객체를 state.error에 넣습니다.
+    [__getTodo.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
     },
-    [__postTodos.pending]: (state) => {
-      state.isLoading = true; // 네트워크 요청이 시작되면 로딩상태를 true로 변경합니다.
+    [__postTodo.pending]: (state) => {
+      state.isLoading = true;
     },
-    [__postTodos.fulfilled]: (state, action) => {
-      state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
-      state.todo = [...state.todo, action.payload]; // Store에 있는 todos에 서버에서 가져온 todos를 넣습니다.
+    [__postTodo.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.todo = [...state.todo, action.payload];
     },
-    [__postTodos.rejected]: (state, action) => {
-      state.isLoading = false; // 에러가 발생했지만, 네트워크 요청이 끝났으니, false로 변경합니다.
-      state.error = action.payload; // catch 된 error 객체를 state.error에 넣습니다.
+    [__postTodo.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    [__deleteTodo.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [__deleteTodo.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.todo = state.todo.filter((del) => del.id !== action.payload);
+    },
+    [__deleteTodo.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
     },
   },
 });
 
 // export default reducer
-export const { deleteTodo, switchTodo } = TodoSlice.actions;
+export const { switchTodo } = TodoSlice.actions;
 export default TodoSlice.reducer;

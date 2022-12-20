@@ -4,7 +4,7 @@ import { addTodo } from "../../modules";
 import { v4 as uuidv4 } from "uuid";
 import CustomButton from "../CustomButton";
 import { AddTodoBox, InputBox, Input } from "./style";
-import { __postTodos } from "../../modules/TodoSlice";
+import { __postTodo } from "../../modules/TodoSlice";
 
 const AddForm = () => {
   const [title, setTitle] = useState("");
@@ -33,7 +33,7 @@ const AddForm = () => {
         content: content,
         isDone: false,
       };
-      dispatch(__postTodos(newToDoS));
+      dispatch(__postTodo(newToDoS));
       // input 초기화
       setTitle("");
       setContent("");

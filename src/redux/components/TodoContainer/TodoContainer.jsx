@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { deleteTodo, switchTodo } from "../../modules";
+import { switchTodo } from "../../modules";
 import { Link } from "react-router-dom";
 import CustomButton from "../CustomButton";
 import {
@@ -10,6 +10,7 @@ import {
   ButtonS,
   DetailLink,
 } from "./style";
+import { __deleteTodo } from "../../modules/TodoSlice";
 
 const TodoContainer = ({ isActive }) => {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const TodoContainer = ({ isActive }) => {
    */
   const handleDeleteToDo = (id) => {
     if (window.confirm("정말 삭제하시겠습니까?") === true) {
-      dispatch(deleteTodo(id));
+      dispatch(__deleteTodo(id));
     }
   };
 
