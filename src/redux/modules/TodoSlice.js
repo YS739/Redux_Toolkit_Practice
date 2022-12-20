@@ -1,34 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-
-// Action Value
-const ADD_TODO = "ADD_TODO";
-const DELETE_TODO = "DELETE_TODO";
-const SWITCH_TODO = "SWITCH_TODO";
-
-// Action Creator
-// todo 추가하기
-export const addTodo = (payload) => {
-  return {
-    type: ADD_TODO,
-    payload,
-  };
-};
-
-// todo 삭제하기
-export const deleteTodo = (payload) => {
-  return {
-    type: DELETE_TODO,
-    payload,
-  };
-};
-
-// todo 상태 변경하기
-export const switchTodo = (payload) => {
-  return {
-    type: SWITCH_TODO,
-    payload,
-  };
-};
+import { createSlice } from "@reduxjs/toolkit";
 
 // Initial State
 const initialState = {
@@ -55,26 +26,21 @@ const initialState = {
   ],
 };
 
-// Reducer
-const TodoSlice = (state = initialState, action) => {
-  switch (action.type) {
-    // 추가하기
-    case ADD_TODO:
-      return {
-        ...state,
-        todo: [...state.todo, action.payload],
-      };
+// Redux Toolkit 적용한 Reducer
+const TodoSlice = createSlice({
+  name: "TodoS",
+  initialState,
+  reducers: {
+    addTodo: (state, action) => {
+      state.todo = [...state.todo, action.payload];
+    },
 
-    // 삭제하기
-    case DELETE_TODO:
-      const newTodo = state.todo.filter((del) => del.id !== action.payload);
-      return {
-        todo: newTodo,
-      };
+    deleteTodo: (state, action) => {
+      state.todo = state.todo.filter((del) => del.id !== action.payload);
+    },
 
-    // 상태 변경(완료, 취소)
-    case SWITCH_TODO:
-      const switchId = state.todo.map((todo) => {
+    switchTodo: (state, action) => {
+      state.todo = state.todo.map((todo) => {
         if (todo.id === action.payload) {
           return {
             ...todo,
@@ -85,13 +51,10 @@ const TodoSlice = (state = initialState, action) => {
           ...todo,
         };
       });
-      return {
-        todo: switchId,
-      };
-    default:
-      return state;
-  }
-};
+    },
+  },
+});
 
 // export default reducer
-export default TodoSlice;
+export const { addTodo, deleteTodo, switchTodo } = TodoSlice.actions;
+export default TodoSlice.reducer;
