@@ -1,6 +1,6 @@
 import Router from "./shared/Router";
 import GlobalStyle from "./redux/components/GlobalStyle";
-import { __getTodos } from "./redux/modules/TodoSlice";
+import { __getTodos, __postTodos } from "./redux/modules/TodoSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 

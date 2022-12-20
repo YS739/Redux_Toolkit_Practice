@@ -15,7 +15,8 @@ const TodoContainer = ({ isActive }) => {
   const dispatch = useDispatch();
 
   // TodoList 값 가져오기
-  const globalTodo = useSelector((state) => state.TodoSlice.todo);
+  const globalTodo = useSelector((state) => state.TodoSlice);
+  console.log(globalTodo);
 
   // 삭제하기 버튼을 눌렀을 때
   /** 삭제 확인 창 추가 22.12.18
