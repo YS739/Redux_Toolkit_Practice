@@ -56,7 +56,7 @@ const initialState = {
 };
 
 // Reducer
-const TodoS = (state = initialState, action) => {
+const TodoSlice = (state = initialState, action) => {
   switch (action.type) {
     // 추가하기
     case ADD_TODO:
@@ -94,4 +94,4 @@ const TodoS = (state = initialState, action) => {
 };
 
 // export default reducer
-export default TodoS;
+export default TodoSlice;

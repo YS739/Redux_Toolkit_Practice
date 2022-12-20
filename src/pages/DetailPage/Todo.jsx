@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { DetailBox, CardHead, CardMain, GoTodo } from "./style";
 
 const Todo = () => {
-  const global = useSelector((state) => state.TodoS.todo);
+  const global = useSelector((state) => state.TodoSlice.todo);
   const param = useParams();
   const theTodo = global.find((list) => list.id === param.id);
 

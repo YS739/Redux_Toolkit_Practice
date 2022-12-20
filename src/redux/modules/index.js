@@ -1,1 +1,1 @@
-export { default, addTodo, deleteTodo, switchTodo } from "./TodoS";
+export { default, addTodo, deleteTodo, switchTodo } from "./TodoSlice";

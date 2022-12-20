@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addTodo } from "../../modules/TodoS";
+import { addTodo } from "../../modules";
 import { v4 as uuidv4 } from "uuid";
 import CustomButton from "../CustomButton";
 import { AddTodoBox, InputBox, Input } from "./style";
