@@ -14,7 +14,7 @@ export const __getTodos = createAsyncThunk(
   "todo/getTodo",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get("http://localhost:3001/todo", payload);
+      const data = await axios.get("http://localhost:3001/todo");
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -79,7 +79,7 @@ const TodoSlice = createSlice({
     },
     [__postTodos.fulfilled]: (state, action) => {
       state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
-      state.todo = action.payload; // Store에 있는 todos에 서버에서 가져온 todos를 넣습니다.
+      state.todo = [...state.todo, action.payload]; // Store에 있는 todos에 서버에서 가져온 todos를 넣습니다.
     },
     [__postTodos.rejected]: (state, action) => {
       state.isLoading = false; // 에러가 발생했지만, 네트워크 요청이 끝났으니, false로 변경합니다.
