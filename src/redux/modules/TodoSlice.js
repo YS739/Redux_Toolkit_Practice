@@ -28,7 +28,7 @@ const initialState = {
 
 // Redux Toolkit 적용한 Reducer
 const TodoSlice = createSlice({
-  name: "TodoS",
+  name: "TodoS", // 이 모듈의 이름
   initialState,
   reducers: {
     addTodo: (state, action) => {
