@@ -35,11 +35,11 @@ export const __postTodo = createAsyncThunk(
 );
 
 export const __deleteTodo = createAsyncThunk(
-  "todo/postTodo",
+  "todo/deleteTodo",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.delete(`http://localhost:3001/todo/${payload}`);
-      return thunkAPI.fulfillWithValue(data.data);
+      await axios.delete(`http://localhost:3001/todo/${payload}`);
+      return thunkAPI.fulfillWithValue(payload);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -48,7 +48,7 @@ export const __deleteTodo = createAsyncThunk(
 
 // Redux Toolkit 적용한 Reducer
 const TodoSlice = createSlice({
-  name: "TodoS", // 이 모듈의 이름 - configStore에서 사용
+  name: "TodoSlice", // 이 모듈의 이름
   initialState,
   reducers: {
     // deleteTodo: (state, action) => {

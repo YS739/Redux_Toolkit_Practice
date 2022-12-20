@@ -14,6 +14,7 @@ import { __deleteTodo } from "../../modules/TodoSlice";
 
 const TodoContainer = ({ isActive }) => {
   const dispatch = useDispatch();
+  const { isLoading, error } = useSelector((state) => state.TodoSlice);
 
   // TodoList 값 가져오기
   const globalTodo = useSelector((state) => state.TodoSlice.todo);
@@ -32,6 +33,13 @@ const TodoContainer = ({ isActive }) => {
     dispatch(switchTodo(id));
   };
 
+  if (isLoading) {
+    return <div>로딩 중....</div>;
+  }
+
+  if (error) {
+    return <div>{error.message}</div>;
+  }
   return (
     <ListContainer>
       <h1>{isActive ? "Working...🔥🔥🔥" : "Done 🎉🎉🎉"}</h1>

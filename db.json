@@ -17,18 +17,6 @@
       "title": "할 일이 너무 많아서 제목이 길어요",
       "content": "할 게 너무 많아서 내용이 길어질 수도 있잖아요. 할 게 정말 너무 너무 너무 많다!!!!",
       "isDone": false
-    },
-    {
-      "id": "a2fc3f9b-e1b3-46ec-933b-bbddaa5bfb85",
-      "title": "안ㄴ여",
-      "content": "안녕",
-      "isDone": false
-    },
-    {
-      "id": "8355ccbc-30c2-4fd1-ac38-ef346fadee76",
-      "title": "ㅇ",
-      "content": "ㅇㄹ",
-      "isDone": false
     }
   ]
 }
