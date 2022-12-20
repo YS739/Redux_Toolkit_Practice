@@ -10,6 +10,7 @@ import {
   ButtonS,
   DetailLink,
 } from "./style";
+import axios from "axios";
 
 const TodoContainer = ({ isActive }) => {
   const dispatch = useDispatch();
