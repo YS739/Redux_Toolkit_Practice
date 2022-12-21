@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ToDoList from "../pages/HomePage";
 import Todo from "../pages/DetailPage";
 import Layout from "./Layout";
+import Edit from "../redux/components/Edit";
 
 const Router = () => {
   return (
@@ -11,6 +12,7 @@ const Router = () => {
         <Routes>
           {<Route path="/" element={<ToDoList />} />}
           {<Route path="/:id" element={<Todo />} />}
+          {<Route path="/edit/:id" element={<Edit />} />}
         </Routes>
       </Layout>
     </BrowserRouter>

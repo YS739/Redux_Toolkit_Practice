@@ -4,4 +4,5 @@ export {
   __postTodo,
   __deleteTodo,
   __switchTodo,
+  __updateTodo,
 } from "./TodoSlice";

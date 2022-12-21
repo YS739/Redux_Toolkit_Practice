@@ -27,6 +27,9 @@ const Todo = () => {
         <span>{theTodo.isDone === false ? "🔥Working🔥" : "🎉Done🎉"}</span>
         <h1>제목: {theTodo.title}</h1>
         <h2>내용: {theTodo.content}</h2>
+        <button onClick={() => navigate(`/edit/${theTodo.id}`)}>
+          수정하기
+        </button>
       </CardMain>
     </DetailBox>
   );
