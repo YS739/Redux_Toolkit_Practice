@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { __updateTodo } from "../../redux/modules";
+import { __getTodo } from "../../redux/modules";
+
 import {
   DetailBox,
   CardHead,
@@ -13,15 +15,38 @@ import {
 } from "./style";
 
 const Edit = () => {
-  const global = useSelector((state) => state.TodoSlice.todo);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(__getTodo());
+  }, [dispatch]);
+
+  const global = useSelector((state) => state.TodoSlice.todo);
   const param = useParams();
+  const { error } = useSelector((state) => state.TodoSlice);
 
   const theTodo = global.find((list) => list.id === param.id);
   const navigate = useNavigate(`/${theTodo?.id}`);
 
-  const [title, setTitle] = useState(theTodo.title);
-  const [content, setContent] = useState(theTodo.content);
+  const [title, setTitle] = useState(theTodo?.title);
+  const [content, setContent] = useState(theTodo?.content);
+
+  useEffect(() => {
+    if (global.length < 1) return;
+
+    // 새로고침 후 todo에 데이터가 들어왔을 때
+    // input에 todo의 title과 content를 넣음
+    const todo = global.find((list) => list.id === param.id);
+    setTitle(todo?.title);
+    setContent(todo?.content);
+
+    // 경고를 무시하겠다는 의미
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [global]);
+
+  if (error) {
+    return <div>{error.massage}</div>;
+  }
 
   // input 창에 제목과 내용을 입력했을 때 입력값 가져오기
   const inputContent = (e) => {
