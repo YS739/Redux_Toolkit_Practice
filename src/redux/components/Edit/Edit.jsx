@@ -18,10 +18,10 @@ const Edit = () => {
   const param = useParams();
 
   const theTodo = global.find((list) => list.id === param.id);
-  const navigate = useNavigate(`/${theTodo.id}`);
+  const navigate = useNavigate(`/${theTodo?.id}`);
 
-  const [title, setTitle] = useState(theTodo.title);
-  const [content, setContent] = useState(theTodo.content);
+  const [title, setTitle] = useState(theTodo?.title);
+  const [content, setContent] = useState(theTodo?.content);
 
   // input 창에 제목과 내용을 입력했을 때 입력값 가져오기
   const inputContent = (e) => {
@@ -35,7 +35,7 @@ const Edit = () => {
 
   const editHandler = () => {
     if (window.confirm("수정하시겠습니까?") === true) {
-      navigate("/");
+      navigate(`/${theTodo?.id}`);
       dispatch(
         // title과 content만 수정한 객체를 dispatch로 보냄
         __updateTodo({
@@ -50,7 +50,7 @@ const Edit = () => {
   return (
     <DetailBox>
       <CardHead>
-        ID: {theTodo.id.slice(0, 8)}
+        ID: {theTodo?.id.slice(0, 8)}
         <GoTodo
           onClick={() => {
             navigate("/");
@@ -60,7 +60,7 @@ const Edit = () => {
         </GoTodo>
       </CardHead>
       <CardMain>
-        <span>{theTodo.isDone === false ? "🔥Working🔥" : "🎉Done🎉"}</span>
+        <span>{theTodo?.isDone === false ? "🔥Working🔥" : "🎉Done🎉"}</span>
         <EditForm>
           <TitleInput
             id="title"

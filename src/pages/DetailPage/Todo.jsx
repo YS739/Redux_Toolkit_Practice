@@ -14,7 +14,7 @@ const Todo = () => {
   return (
     <DetailBox>
       <CardHead>
-        ID: {theTodo.id.slice(0, 8)}
+        ID: {theTodo?.id.slice(0, 8)}
         <GoTodo
           onClick={() => {
             navigate("/");
@@ -24,10 +24,10 @@ const Todo = () => {
         </GoTodo>
       </CardHead>
       <CardMain>
-        <span>{theTodo.isDone === false ? "🔥Working🔥" : "🎉Done🎉"}</span>
-        <h1>제목: {theTodo.title}</h1>
-        <h2>내용: {theTodo.content}</h2>
-        <button onClick={() => navigate(`/edit/${theTodo.id}`)}>
+        <span>{theTodo?.isDone === false ? "🔥Working🔥" : "🎉Done🎉"}</span>
+        <h1>제목: {theTodo?.title}</h1>
+        <h2>내용: {theTodo?.content}</h2>
+        <button onClick={() => navigate(`/edit/${theTodo?.id}`)}>
           수정하기
         </button>
       </CardMain>
