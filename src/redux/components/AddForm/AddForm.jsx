@@ -4,22 +4,23 @@ import { v4 as uuidv4 } from "uuid";
 import CustomButton from "../CustomButton";
 import { AddTodoBox, InputBox, Input } from "./style";
 import { __postTodo } from "../../modules";
+import useInput from "../../../hooks/useInput";
 
 const AddForm = () => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [title, setTitle, onChangeTitleHandler] = useInput();
+  const [content, setContent, onChangeContentHandler] = useInput();
 
   const dispatch = useDispatch();
 
   //   input에 입력한 값 받기
-  const onChangeHandler = (e) => {
-    // input(제목, 내용)에 입력된 값 받기
-    if (e.target.id === "title") {
-      setTitle(e.target.value);
-    } else if (e.target.id === "content") {
-      setContent(e.target.value);
-    }
-  };
+  // const onChangeHandler = (e) => {
+  //   // input(제목, 내용)에 입력된 값 받기
+  //   if (e.target.id === "title") {
+  //     setTitle(e.target.value);
+  //   } else if (e.target.id === "content") {
+  //     setContent(e.target.value);
+  //   }
+  // };
 
   // 추가하기 버튼을 누르면 새로운 ToDo가 추가
   const onAddToDoHandler = (e) => {
@@ -71,7 +72,7 @@ const AddForm = () => {
             id="title"
             value={title}
             maxLength="20"
-            onChange={onChangeHandler}
+            onChange={onChangeTitleHandler}
           />
           <h3>내용</h3>
           <Input
@@ -79,7 +80,7 @@ const AddForm = () => {
             id="content"
             value={content}
             maxLength="50"
-            onChange={onChangeHandler}
+            onChange={onChangeContentHandler}
           />
           <CustomButton btnName="add">추가하기</CustomButton>
         </InputBox>
