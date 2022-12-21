@@ -13,8 +13,8 @@ const App = () => {
 
   return (
     <>
-      <GlobalStyle />;
-      <Router />;
+      <GlobalStyle />
+      <Router />
     </>
   );
 };

@@ -34,16 +34,18 @@ const Edit = () => {
   };
 
   const editHandler = () => {
-    navigate("/");
-    dispatch(
-      // title과 content만 수정한 객체를 dispatch로 보냄
-      __updateTodo({
-        id: theTodo.id,
-        title: title,
-        content: content,
-        isDone: theTodo.isDone,
-      })
-    );
+    if (window.confirm("수정하시겠습니까?") === true) {
+      navigate("/");
+      dispatch(
+        // title과 content만 수정한 객체를 dispatch로 보냄
+        __updateTodo({
+          id: theTodo.id,
+          title: title,
+          content: content,
+          isDone: theTodo.isDone,
+        })
+      );
+    }
   };
   return (
     <DetailBox>

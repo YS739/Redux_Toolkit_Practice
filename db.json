@@ -10,7 +10,7 @@
       "id": "eaa89f68-e94d-4ce6-8a0c-ae3e8d35a73a",
       "title": "독서하기",
       "content": "<IT지식> 10장 읽기",
-      "isDone": true
+      "isDone": false
     },
     {
       "id": "44be715b-d93d-4a32-bc91-c2575b2b51af",
@@ -19,9 +19,9 @@
       "isDone": true
     },
     {
-      "id": "cac3ee9b-c0b5-428b-88ee-c1b600b5d93c",
-      "title": "ㅎㄹ",
-      "content": "ㄹㄹ",
+      "id": "d787f136-4f88-4a7a-b1ea-55864406efd5",
+      "title": "우ㄷ",
+      "content": "오아ㅇㄹ",
       "isDone": false
     }
   ]
