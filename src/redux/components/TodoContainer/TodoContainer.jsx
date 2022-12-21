@@ -28,8 +28,8 @@ const TodoContainer = ({ isActive }) => {
   };
 
   // 완료, 취소 버튼 눌렀을 때
-  const handleSwitchState = (id) => {
-    dispatch(__switchTodo(id));
+  const handleSwitchState = (switchState) => {
+    dispatch(__switchTodo(switchState));
   };
 
   if (isLoading) {
@@ -64,7 +64,14 @@ const TodoContainer = ({ isActive }) => {
                   </CustomButton>
                   <CustomButton
                     btnName="delSwitch"
-                    onClick={() => handleSwitchState(todo.id)}
+                    onClick={() =>
+                      handleSwitchState({
+                        id: todo.id,
+                        title: todo.title,
+                        content: todo.content,
+                        isDone: !todo.isDone,
+                      })
+                    }
                   >
                     {todo.isDone ? "취소" : "완료"}
                   </CustomButton>

@@ -25,6 +25,7 @@ const Edit = () => {
 
   // input 창에 제목과 내용을 입력했을 때 입력값 가져오기
   const inputContent = (e) => {
+    e.preventDefault();
     if (e.target.name === "title") {
       setTitle(e.target.value);
     } else if (e.target.name === "content") {

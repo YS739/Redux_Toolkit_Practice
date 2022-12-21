@@ -50,7 +50,7 @@ export const __switchTodo = createAsyncThunk(
   "todo/switchTodo",
   async (payload, thunkAPI) => {
     try {
-      await axios.patch(`http://localhost:3001/todo/${payload}`);
+      await axios.patch(`http://localhost:3001/todo/${payload.id}`, payload);
       return thunkAPI.fulfillWithValue(payload);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -61,7 +61,6 @@ export const __switchTodo = createAsyncThunk(
 export const __updateTodo = createAsyncThunk(
   "todo/updateTodo",
   async (payload, thunkAPI) => {
-    console.log(payload);
     try {
       await axios.patch(`http://localhost:3001/todo/${payload.id}`, payload);
       return thunkAPI.fulfillWithValue(payload);
@@ -116,17 +115,10 @@ const TodoSlice = createSlice({
     },
     [__switchTodo.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.todo = state.todo.map((todo) => {
-        if (todo.id === action.payload) {
-          return {
-            ...todo,
-            isDone: !todo.isDone,
-          };
-        }
-        return {
-          ...todo,
-        };
-      });
+      let copy2 = [...state.todo];
+      state.todo = copy2.map((todo) =>
+        todo.id === action.payload.id ? action.payload : todo
+      );
     },
     [__switchTodo.rejected]: (state, action) => {
       state.isLoading = false;
