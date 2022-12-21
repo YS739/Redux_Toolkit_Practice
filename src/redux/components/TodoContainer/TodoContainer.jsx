@@ -38,6 +38,7 @@ const TodoContainer = ({ isActive }) => {
     dispatch(__switchTodo(newState));
   };
 
+  // isLoading을 지우니 화면이 깜빡거리지 않음
   if (error) {
     return <div>{error.message}</div>;
   }
