@@ -13,7 +13,7 @@ import { __deleteTodo, __switchTodo } from "../../modules";
 
 const TodoContainer = ({ isActive }) => {
   const dispatch = useDispatch();
-  const { isLoading, error } = useSelector((state) => state.TodoSlice);
+  const { error } = useSelector((state) => state.TodoSlice);
 
   // TodoList 값 가져오기
   const globalTodo = useSelector((state) => state.TodoSlice.todo);
@@ -28,13 +28,15 @@ const TodoContainer = ({ isActive }) => {
   };
 
   // 완료, 취소 버튼 눌렀을 때
-  const handleSwitchState = (switchState) => {
-    dispatch(__switchTodo(switchState));
+  const handleSwitchState = (todo) => {
+    const newState = {
+      id: todo.id,
+      title: todo.title,
+      content: todo.content,
+      isDone: !todo.isDone,
+    };
+    dispatch(__switchTodo(newState));
   };
-
-  if (isLoading) {
-    return <div>로딩 중....</div>;
-  }
 
   if (error) {
     return <div>{error.message}</div>;
@@ -64,14 +66,7 @@ const TodoContainer = ({ isActive }) => {
                   </CustomButton>
                   <CustomButton
                     btnName="delSwitch"
-                    onClick={() =>
-                      handleSwitchState({
-                        id: todo.id,
-                        title: todo.title,
-                        content: todo.content,
-                        isDone: !todo.isDone,
-                      })
-                    }
+                    onClick={() => handleSwitchState(todo)}
                   >
                     {todo.isDone ? "취소" : "완료"}
                   </CustomButton>
