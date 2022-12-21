@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
-import { __updateTodo } from "../../modules";
+import { __updateTodo } from "../../redux/modules";
 import {
   DetailBox,
   CardHead,
@@ -20,8 +20,8 @@ const Edit = () => {
   const theTodo = global.find((list) => list.id === param.id);
   const navigate = useNavigate(`/${theTodo?.id}`);
 
-  const [title, setTitle] = useState(theTodo?.title);
-  const [content, setContent] = useState(theTodo?.content);
+  const [title, setTitle] = useState(theTodo.title);
+  const [content, setContent] = useState(theTodo.content);
 
   // input 창에 제목과 내용을 입력했을 때 입력값 가져오기
   const inputContent = (e) => {

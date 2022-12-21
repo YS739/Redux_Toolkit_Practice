@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ToDoList from "../pages/HomePage";
 import Todo from "../pages/DetailPage";
 import Layout from "./Layout";
-import Edit from "../redux/components/Edit";
+import Edit from "../pages/Edit";
 
 const Router = () => {
   return (
