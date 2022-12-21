@@ -46,29 +46,23 @@ export const __deleteTodo = createAsyncThunk(
   }
 );
 
+export const __switchTodo = createAsyncThunk(
+  "todo/switchTodo",
+  async (payload, thunkAPI) => {
+    try {
+      await axios.patch(`http://localhost:3001/todo/${payload}`);
+      return thunkAPI.fulfillWithValue(payload);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 // Redux Toolkit 적용한 Reducer
 const TodoSlice = createSlice({
   name: "TodoSlice", // 이 모듈의 이름
   initialState,
-  reducers: {
-    // deleteTodo: (state, action) => {
-    //   state.todo = state.todo.filter((del) => del.id !== action.payload);
-    // },
-
-    switchTodo: (state, action) => {
-      state.todo = state.todo.map((todo) => {
-        if (todo.id === action.payload) {
-          return {
-            ...todo,
-            isDone: !todo.isDone,
-          };
-        }
-        return {
-          ...todo,
-        };
-      });
-    },
-  },
+  reducers: {},
   // extraReducers(비동기를 위한 reducer)
   extraReducers: {
     [__getTodo.pending]: (state) => {
@@ -104,9 +98,29 @@ const TodoSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+    [__switchTodo.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [__switchTodo.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.todo = state.todo.map((todo) => {
+        if (todo.id === action.payload) {
+          return {
+            ...todo,
+            isDone: !todo.isDone,
+          };
+        }
+        return {
+          ...todo,
+        };
+      });
+    },
+    [__switchTodo.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
   },
 });
 
 // export default reducer
-export const { switchTodo } = TodoSlice.actions;
 export default TodoSlice.reducer;

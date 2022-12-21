@@ -1,1 +1,7 @@
-export { default, switchTodo } from "./TodoSlice";
+export {
+  default,
+  __getTodo,
+  __postTodo,
+  __deleteTodo,
+  __switchTodo,
+} from "./TodoSlice";

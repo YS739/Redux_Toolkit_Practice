@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import { switchTodo } from "../../modules";
 import { Link } from "react-router-dom";
 import CustomButton from "../CustomButton";
 import {
@@ -10,7 +9,7 @@ import {
   ButtonS,
   DetailLink,
 } from "./style";
-import { __deleteTodo } from "../../modules/TodoSlice";
+import { __deleteTodo, __switchTodo } from "../../modules";
 
 const TodoContainer = ({ isActive }) => {
   const dispatch = useDispatch();
@@ -30,7 +29,7 @@ const TodoContainer = ({ isActive }) => {
 
   // 완료, 취소 버튼 눌렀을 때
   const handleSwitchState = (id) => {
-    dispatch(switchTodo(id));
+    dispatch(__switchTodo(id));
   };
 
   if (isLoading) {
