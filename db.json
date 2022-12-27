@@ -1,28 +1,3 @@
 {
-  "todo": [
-    {
-      "id": "b3b882f5-d6ac-436d-896a-c3fd567fbb6e",
-      "title": "할 일이 너무 많아서 제목이 길어요",
-      "content": "할 게 너무 많아서 내용이 길어질 수도 있잖아요. 할 게 정말 너무 너무 너무 많다!!!!",
-      "isDone": false
-    },
-    {
-      "id": "eaa89f68-e94d-4ce6-8a0c-ae3e8d35a73a",
-      "title": "독서하기",
-      "content": "<IT지식> 10장 읽기",
-      "isDone": false
-    },
-    {
-      "id": "44be715b-d93d-4a32-bc91-c2575b2b51af",
-      "title": "React",
-      "content": "리액트 과제 제출하기",
-      "isDone": true
-    },
-    {
-      "id": "6cc408b2-2d98-455f-a2e9-d6544103745d",
-      "title": "ㅇㄹㄹㄹㅇㄹㄹㅇ",
-      "content": "ㅇㅇㅇㄹㅇㄹㅇ",
-      "isDone": false
-    }
-  ]
+  "todo": []
 }
